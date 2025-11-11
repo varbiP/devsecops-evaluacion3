@@ -17,7 +17,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Instalando dependencias...'
-                sh 'pip install -r requirements.txt'
+                sh 'pip install --user -r requirements.txt'
                 echo 'Ejecutando análisis con Bandit...'
                 sh 'bandit -r . || true'
             }
