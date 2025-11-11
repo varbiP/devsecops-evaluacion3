@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker { image 'python:3.9-slim' args '-u 0' } }
+    agent {
+        docker {
+            image 'python:3.9-slim'
+            args '-u 0'
+        }
+    }
 
     stages {
         stage('Build') {
@@ -17,7 +22,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Instalando dependencias...'
-                sh 'pip install --user -r requirements.txt'
+                sh 'pip install -r requirements.txt'
                 echo 'Ejecutando análisis con Bandit...'
                 sh 'bandit -r . || true'
             }
